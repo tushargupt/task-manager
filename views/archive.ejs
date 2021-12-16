@@ -1,0 +1,34 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+    <h1>Archive Tasks</h1>
+</div>
+ 
+<% let cnt=0; %> 
+<% for(let i =0; i < localStorage.length; i++){ %>
+<% if((localStorage.key(i)).startsWith("comp")) {%>
+<% cnt++; } }%>
+<% if(cnt>10) {%> 
+    <div class="box">
+        <form>
+            <% let c= 10; %> 
+            <% let i =0; %> 
+            <% while(c<cnt && i<localStorage.length){ %> 
+            <% if((localStorage.key(i)).startsWith("comp")) { %> 
+                <% c++; %> 
+              <div class="box">
+               <% let inn = JSON.parse(localStorage.getItem(localStorage.key(i))) %> 
+               <p class="item"> <%= inn.title %> </p>
+                <p class="item"> <%= inn.description %>  </p>
+                <p class="item"> <%= inn.date  %>  </p>
+               </div>
+            <% } %> 
+            <% i++; %> 
+              <% } %>
+              <input type="hidden" name="listName"></input>
+            </form>
+        </div>
+    <% } %> 
+
+
+<%- include("footer") -%>

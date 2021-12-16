@@ -1,0 +1,28 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+    <h1>Inprogress Task</h1>
+</div>
+
+<div class="box">
+<form action="/complete" method="post">
+    <% for(let i =0; i < localStorage.length; i++){ %> 
+    <% if((localStorage.key(i)).startsWith("inprog")) { %> 
+      <div class="box">
+       <% let inn = JSON.parse(localStorage.getItem(localStorage.key(i))) %> 
+       <input type="checkbox" name="titr"  value="<%= inn.title %>" onChange="this.form.submit()">
+       <input type="hidden" name="desc" value="<%= inn.description %>"></input>
+       <input type="hidden" name="dte" value="<%= inn.date %>" ></input>
+       <p class="item"> <%= inn.title %> </p>
+        <p class="item"> <%= inn.description %>  </p>
+        <p class="item"> <%= inn.date  %>  </p>
+       </div>
+    <% } %> 
+      <% } %>
+      <input type="hidden" name="listName"></input>
+    </form>
+</div>
+
+
+
+<%- include("footer") -%>
